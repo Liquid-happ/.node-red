@@ -1,0 +1,348 @@
+[
+    {
+        "id": "8f7a52251be75d34",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b87bde9ce918628a",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "04bb247b3a9a9aab",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "50669e1dcd3f6bf6",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "b87bde9ce918628a",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "04bb247b3a9a9aab",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "3b0e625f28db9372",
+        "type": "ui-group",
+        "name": "Group 1",
+        "page": "50669e1dcd3f6bf6",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": true,
+        "disabled": false,
+        "groupType": "default"
+    },
+    {
+        "id": "2110cca9d7e39da3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a1d5207d6535f53e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7fa7e0bbc1bed4de",
+        "type": "ui-group",
+        "name": "Group Name",
+        "page": "50669e1dcd3f6bf6",
+        "width": 6,
+        "height": 1,
+        "order": -1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "dialog"
+    },
+    {
+        "id": "d5e81ffb57a0f140",
+        "type": "inject",
+        "z": "8f7a52251be75d34",
+        "name": "Fake Sensor Data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sensor/temperature",
+        "payload": "$number(25.5 + ($random() * 5))",
+        "payloadType": "json",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "b90cab7d25c6e8f4"
+            ]
+        ]
+    },
+    {
+        "id": "b90cab7d25c6e8f4",
+        "type": "mqtt out",
+        "z": "8f7a52251be75d34",
+        "name": "Send Fake Data",
+        "topic": "sensor/temperature",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2110cca9d7e39da3",
+        "x": 420,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "563a691537c384aa",
+        "type": "mqtt in",
+        "z": "8f7a52251be75d34",
+        "name": "Auto-detect (parsed JSON)",
+        "topic": "sensor/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "a1d5207d6535f53e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "1b3505b302bbac20"
+            ]
+        ]
+    },
+    {
+        "id": "b701d24cbdc8e3d1",
+        "type": "ui-gauge",
+        "z": "8f7a52251be75d34",
+        "name": "",
+        "group": "7fa7e0bbc1bed4de",
+        "order": 1,
+        "value": "msg.payload.temperature",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "gauge",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 810,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e8aef0579e8820b",
+        "type": "debug",
+        "z": "8f7a52251be75d34",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "caab1f5ec6c4f9c2",
+        "type": "file",
+        "z": "8f7a52251be75d34",
+        "name": "",
+        "filename": "temperature.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "setbymsg",
+        "x": 840,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b3505b302bbac20",
+        "type": "json",
+        "z": "8f7a52251be75d34",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "b701d24cbdc8e3d1",
+                "caab1f5ec6c4f9c2",
+                "8e8aef0579e8820b"
+            ]
+        ]
+    }
+]
